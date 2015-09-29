@@ -10,19 +10,31 @@ class HotSwapActor extends Actor {
   import context._
 
   def angry: PartialFunction[Any, Unit] = {
-    case "foo" => sender ! "I am already angry!"
-    case "bar" => become(happy)
+    case "foo" =>
+      println("::::angry->foo:::::::")
+      sender ! "I am already angry!"
+    case "bar" =>
+      println("::::angry->bar:::::::")
+      become(happy)
   }
 
   def happy: PartialFunction[Any, Unit] = {
-    case "bar" => sender ! "I am already happy :-)"
+    case "bar" =>
+      println("::::happy->bar:::::::")
+      sender ! "I am already happy :-)"
       unbecome
-    case "foo" => become(angry)
+    case "foo" =>
+      println("::::happy->foo:::::::")
+      become(angry)
   }
 
   def receive = {
-    case "foo" => become(angry)
-    case "bar" => become(happy)
+    case "foo" =>
+      println("::::receive->foo:::::::")
+      become(angry)
+    case "bar" =>
+      println("::::receive->bar:::::::")
+      become(happy)
   }
 }
 

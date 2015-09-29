@@ -21,7 +21,7 @@ class FactorialCollector(factorials: List[Int]) extends Actor with ActorLogging 
   var size = factorials.size
   val start = System.currentTimeMillis()
   for (num <- factorials) {
-    context.actorOf(Props(new FactorialCalculator)) ! num
+    context.actorOf(FactorialCalculator.props) ! num
   }
 
   def receive = {
@@ -37,6 +37,10 @@ class FactorialCollector(factorials: List[Int]) extends Actor with ActorLogging 
       }
     }
   }
+}
+
+object FactorialCalculator {
+  def props: Props = Props(new FactorialCalculator)
 }
 
 class FactorialCalculator extends Actor {

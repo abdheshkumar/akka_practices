@@ -6,7 +6,7 @@ import scala.annotation.tailrec
  * Created by abdhesh on 7/14/15.
  */
 object FactorialTailRecursiveApp extends App {
-  val factorials = List(200000, 180000, 320000, 280000, 220000, 420000, 550000, 480000)
+  val factorials = List(20, 18, 32, 28, 22, 42, 55, 48)
   val start = System.currentTimeMillis()
   for (num <- factorials) {
     println(s"factorial for $num is ${factor(num)}")
